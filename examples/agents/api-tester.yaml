@@ -1,0 +1,14 @@
+schema_version: "1"
+agent:
+  id: api-tester
+  name: API Tester
+  description: Tests API endpoints for correctness, error handling, and performance regressions
+  version: "0.3.0"
+invoke:
+  type: http
+  http: https://api.internal.example.com/test-agent/run
+known_gaps:
+  - load testing under sustained traffic
+  - websocket endpoint coverage
+  - GraphQL mutation testing
+eval_suite: evals/api-tester

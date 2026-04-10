@@ -1,0 +1,37 @@
+- id: clean-code-01
+  input: |
+    interface UserRepository {
+      findById(id: string): Promise<User | null>;
+      save(user: User): Promise<void>;
+    }
+
+    class PostgresUserRepository implements UserRepository {
+      constructor(private readonly pool: Pool) {}
+
+      async findById(id: string): Promise<User | null> {
+        const result = await this.pool.query(
+          'SELECT * FROM users WHERE id = $1',
+          [id]
+        );
+        return result.rows[0] ?? null;
+      }
+
+      async save(user: User): Promise<void> {
+        await this.pool.query(
+          'INSERT INTO users (id, name, email) VALUES ($1, $2, $3) ON CONFLICT (id) DO UPDATE SET name = $2, email = $3',
+          [user.id, user.name, user.email]
+        );
+      }
+    }
+  expected:
+    grade: pass
+  grading:
+    - type: llm-judge
+      rubric: |
+        This is well-structured code using the repository pattern with parameterized
+        queries. The review should acknowledge the code is clean and secure. Minor
+        suggestions are acceptable but no false-positive security issues should be raised.
+  tags:
+    - clean-code
+    - false-positive-check
+  difficulty: medium
