@@ -64,6 +64,10 @@ const HttpInvokeSchema = z.object({
  *
  * v1 input is always a string passed via stdin (command) or request body (http).
  * Structured inputs are a known gap for future schema versions.
+ *
+ * Trust model: the invoke config is trusted — it controls what commands are
+ * spawned and what URLs are called. Users must review agent configs before
+ * running them, the same way they would review a Makefile or CI script.
  */
 export const InvokeSchema = z.discriminatedUnion("type", [CommandInvokeSchema, HttpInvokeSchema]);
 
