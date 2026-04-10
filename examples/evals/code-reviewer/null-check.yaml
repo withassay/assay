@@ -1,0 +1,18 @@
+- id: null-check-01
+  input: |
+    function processOrder(order: Order | null) {
+      const total = order.items.reduce((sum, item) => sum + item.price, 0);
+      return { total, tax: total * 0.08 };
+    }
+  expected:
+    must_contain:
+      - "null"
+  grading:
+    - type: deterministic
+      check: contains
+      values:
+        - "null"
+        - undefined
+  tags:
+    - correctness
+  difficulty: easy

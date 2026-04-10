@@ -1,0 +1,22 @@
+- id: style-violation-01
+  input: |
+    function calcTax(a, b, c) {
+      var x = a * b;
+      if(c == true) { x = x * 1.1; }
+      return x;
+    }
+  expected:
+    must_contain:
+      - naming
+  grading:
+    - type: heuristic
+      check: word_count
+      min: 30
+    - type: llm-judge
+      rubric: |
+        Does the review address poor variable naming (a, b, c, x), use of var
+        instead of const/let, and loose equality (==) instead of strict (===)?
+  tags:
+    - style
+    - readability
+  difficulty: medium

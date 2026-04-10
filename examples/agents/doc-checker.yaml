@@ -1,0 +1,14 @@
+schema_version: "1"
+agent:
+  id: doc-checker
+  name: Documentation Checker
+  description: Validates documentation for completeness, clarity, and accessibility standards
+  version: "0.1.0"
+invoke:
+  type: command
+  command: npx @withassay/doc-checker --path docs/
+known_gaps:
+  - multi-language support
+  - screen reader compatibility testing
+  - reading level analysis for non-English content
+eval_suite: evals/doc-checker

@@ -1,0 +1,14 @@
+schema_version: "1"
+agent:
+  id: code-reviewer
+  name: Code Reviewer
+  description: Reviews code changes for security vulnerabilities, injection risks, and unsafe patterns
+  version: "1.0.0"
+invoke:
+  type: command
+  command: npx @withassay/code-reviewer --diff
+known_gaps:
+  - performance profiling
+  - concurrency analysis
+  - third-party dependency auditing
+eval_suite: evals/code-reviewer

@@ -1,10 +1,17 @@
-// Agent proof and eval case schemas — populated in issue #2
+export {
+  AgentProofSchema,
+  ConfidenceBaseSchema,
+  EvalCaseSchema,
+  GradingLayerSchema,
+  InvokeSchema,
+  MaturityTierSchema,
+  ProofResultSchema,
+  type AgentProof,
+  type EvalCase,
+  type GradingLayer,
+  type Invoke,
+  type MaturityTier,
+  type ProofResult,
+} from "./types.js";
 
-/** Agent definition and proof configuration. */
-export type AgentProof = Record<string, unknown>;
-
-/** Individual eval test case. */
-export type EvalCase = Record<string, unknown>;
-
-/** Output of an eval run. */
-export type ProofResult = Record<string, unknown>;
+export { validateAgentProof, validateEvalSuite, validateProofResult } from "./validation.js";
